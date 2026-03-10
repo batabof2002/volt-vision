@@ -1,0 +1,31 @@
+# Render deployment configuration
+# Deploy both backend and frontend from one file
+
+services:
+  # FastAPI Backend
+  - type: web
+    name: volt-vision-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./energy_system.db
+      - key: SIMULATION_ENABLED
+        value: "true"
+      - key: SIMULATION_INTERVAL_SECONDS
+        value: "60"
+      - key: ALLOWED_ORIGIN
+        value: https://volt-vision.vercel.app  # Update this after deploying frontend
+
+  # React Frontend (Static Site)
+  - type: web
+    name: volt-vision-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://volt-vision-api.onrender.com/api  # Update with your backend URL
