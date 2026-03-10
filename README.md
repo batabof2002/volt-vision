@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Hybrid Energy System Dashboard
 
 A production-ready web dashboard for monitoring and controlling a hybrid Solar + Wind + Battery energy system. Built for an Electrical Engineering capstone project.
@@ -523,3 +524,7 @@ For questions or issues:
 ---
 
 **Built January 2026 | Python + FastAPI + React + TypeScript**
+=======
+# volt-vision
+capstone project
+>>>>>>> 5d0d3235d64a96848565682932f45bb1469b0418
